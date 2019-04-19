@@ -8,7 +8,7 @@ using System.Text;
 
 namespace NetChecker
 {
-    public class CsvParser
+    internal class CsvParser
     {
         private readonly bool _hasHeaderRecord;
         private readonly string _delimiter;

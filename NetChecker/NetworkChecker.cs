@@ -19,17 +19,12 @@ namespace NetChecker
                 throw new ArgumentNullException(nameof(path));
             }
             
-            var data = _parser.Parse(path);
-            return CheckList(data);
+            var nodeList = _parser.Parse(path);
+            return CheckList(nodeList);
         }
         
-        public bool CheckList(List<(string, string)> list)
+        private static bool CheckList(IReadOnlyCollection<(string, string)> list)
         {
-            if (list == null)
-            {
-                throw new ArgumentNullException(nameof(list));
-            }
-
             if (list.Count < 2)
             {
                 // no computer or only one connected pair = no unreachable segments

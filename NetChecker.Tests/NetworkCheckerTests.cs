@@ -73,14 +73,6 @@ namespace NetChecker.Tests
 
         [Theory]
         [MemberData(nameof(Data))]
-        public void NetworkCheckerListTest(List<(string, string)> source, bool expected)
-        {
-            var result = _networkChecker.CheckList(source);
-            Assert.Equal(expected, result);
-        }
-        
-        [Theory]
-        [MemberData(nameof(Data))]
         public void NetworkCheckerTest(List<(string, string)> source, bool expected)
         {
             try
@@ -106,7 +98,13 @@ namespace NetChecker.Tests
         [Fact]
         public void NetworkCheckerTest_ArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => _networkChecker.CheckList(null));
+            Assert.Throws<ArgumentNullException>(() => _networkChecker.Check(null));
+        }
+        
+        [Fact]
+        public void NetworkCheckerTest_ArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => _networkChecker.Check("fake\\path"));
         }
     }
 }
